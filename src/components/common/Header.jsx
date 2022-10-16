@@ -5,12 +5,15 @@ import { FavoriteBorderOutlined, Home, Menu, Person, Person2Outlined, ShoppingCa
 import { Link } from 'react-router-dom';
 import { navList } from '../data/NavList';
 import SearchBar from './SearchBar';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
     const theme = useTheme();
     const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
     const [openDrawer, setOpenDrawer] = useState(false);
+
+    const amount = useSelector((store) => store.cart.amount)
     return (
         <Box>
             <Box display='flex' sx={{
@@ -31,7 +34,7 @@ const Header = () => {
                         }}>
                             <ShoppingCartOutlined />
                             <Typography variant='subtitle1'>
-                                (0)
+                                ({amount})
                             </Typography>
                         </Box>
                     </>) : (<>
@@ -60,7 +63,7 @@ const Header = () => {
                         }}>
                             <ShoppingCartOutlined />
                             <Typography variant='subtitle1'>
-                                (0)
+                                ({amount})
                             </Typography>
                         </Box>
                     </Stack>
